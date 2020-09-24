@@ -1,10 +1,10 @@
-import argparse, requests, json, winreg, os
+import argparse, requests, json, os
 from datetime import date
 from collections import OrderedDict
 from pathlib import Path
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-path','-p',type=Path,help="Manually enter path to hero_grid_config.json - location: STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json")
+parser.add_argument('-path','-p',type=Path,required=True,help="Manually enter path to hero_grid_config.json - location: STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json")
 parser.print_help(); print(); args = parser.parse_args()
 
 date_str = date.today().strftime(" %d-%m-%Y")
@@ -12,16 +12,7 @@ spec_url = 'https://stats.spectral.gg/lrg2/api/?pretty&league=imm_ranked_meta_la
 spec_positions = {"Core Safelane":"1.1","Core Midlane":"1.2","Core Offlane":"1.3","Support":"0.0"}
 rank_cutoffs = [100,97,93,90,85,80]
 tiers = ["S","A","B","C","D"]
-
-# get path to the grid config
-if not args.path:
-    try:
-        steam_path = winreg.QueryValueEx(winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\WOW6432Node\Valve\Steam"), "InstallPath")[0]
-        grid_conf_path = steam_path + '\\userdata\\62756100\\570\\remote\\cfg\\hero_grid_config.json'
-    except: print("Couldn't get steam install path from the registry."); quit()
-else: grid_conf_path = args.path
-print("Grid config path:")
-print(grid_conf_path)
+grid_conf_path = args.path
 
 # open grid config and delete existing if desired
 try:
