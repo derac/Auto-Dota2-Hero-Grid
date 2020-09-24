@@ -1,10 +1,8 @@
 import argparse, requests, json, os
 from datetime import date
-from collections import OrderedDict
-from pathlib import Path
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-path','-p',type=Path,required=True,help="Required. STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json")
+parser.add_argument('-path','-p',type=str,required=True,help="Required. STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json")
 parser.print_help(); print(); args = parser.parse_args()
 
 date_str = date.today().strftime(" %d-%m-%Y")
@@ -35,6 +33,6 @@ for pos_name,pos_endpoint in spec_positions.items():
 
 # write grid conf
 try:
-    with open(grid_conf_path, "w") as f: print(json.dumps(grid_conf, indent=4), file=f)
+    with open(args.path, "w") as f: print(json.dumps(grid_conf, indent=4), file=f)
     print("\nGrid Config has been written.")
 except: print("\nCouldn't write the grid config.")
