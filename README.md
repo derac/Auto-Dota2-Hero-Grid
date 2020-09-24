@@ -1,5 +1,5 @@
 ```
-usage: update-herogrid.py [-h] [-path PATH]
+usage: update-herogrid.py [-h] -path PATH
 
 optional arguments:
   -h, --help           show this help message and exit
