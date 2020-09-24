@@ -26,7 +26,7 @@ print(grid_conf_path)
 # open grid config and delete existing if desired
 try:
     with open(grid_conf_path) as f: grid_conf = json.load(f)
-    grid_conf["configs"] = [c for c in grid_conf["configs"] if "Σ" not in c["config_name"]]
+    grid_conf["configs"] = [c for c in grid_conf["configs"] if "S!" not in c["config_name"]]
     print("\nGrid config loaded.")
 except: print("\nCouldn't load the grid config."); quit()
 
@@ -36,7 +36,7 @@ for pos_name,pos_endpoint in spec_positions.items():
     except: print("\nFailed to load data from spectral.gg"); quit()
     hero_ranks = [(data["rank"],hero_id) for hero_id,data in hero_data.items()]
     hero_ranks.sort(key=lambda x:-x[0])
-    pos_conf = {"config_name": 'Σ ' + pos_name + date_str,
+    pos_conf = {"config_name": 'S! ' + pos_name + date_str,
                 "categories": [{"category_name":tiers[i]+" tier - rank %s+"%rank_cutoffs[i+1],
                                 "x_position":0, "y_position":i*120,"width":1000,"height":100,
                                 "hero_ids":[id for rank,id in hero_ranks if rank_cutoffs[i] >= rank > rank_cutoffs[i+1]]}
