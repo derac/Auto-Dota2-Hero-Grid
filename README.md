@@ -2,7 +2,7 @@ Install requests with pip:
 
 ```> python3 -m pip install requests```
 
-Run the program with the correct path to hero_grid_config.json:
+Run the program with the correct path to hero_grid_config.json (replace STEAM_INSTALL and USER_ID with the correct values):
 
 ```> python3 update-hero-grid.py -path "STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json"```
 
