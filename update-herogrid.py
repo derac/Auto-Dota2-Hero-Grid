@@ -23,6 +23,7 @@ try:
     if args.overwrite: grid_conf["configs"] = []
 except: print("Couldn't load the grid config.")
 
+# update the grid config with each position's data from spectral.gg
 for pos_name,pos_endpoint in spec_positions.items():
     try: hero_data = json.loads(requests.get(spec_url+pos_endpoint).content)["result"][pos_endpoint]
     except: print("Failed to load data from spectral.gg"); quit()
