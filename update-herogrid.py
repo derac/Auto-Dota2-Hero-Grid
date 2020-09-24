@@ -4,7 +4,7 @@ from collections import OrderedDict
 from pathlib import Path
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-path','-p',type=Path,required=True,help="Manually enter path to hero_grid_config.json - location: STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json")
+parser.add_argument('-path','-p',type=Path,required=True,help="Required. Path to hero_grid_config.json. STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json")
 parser.print_help(); print(); args = parser.parse_args()
 
 date_str = date.today().strftime(" %d-%m-%Y")
@@ -12,11 +12,10 @@ spec_url = 'https://stats.spectral.gg/lrg2/api/?pretty&league=imm_ranked_meta_la
 spec_positions = {"Core Safelane":"1.1","Core Midlane":"1.2","Core Offlane":"1.3","Support":"0.0"}
 rank_cutoffs = [100,97,93,90,85,80]
 tiers = ["S","A","B","C","D"]
-grid_conf_path = args.path
 
 # open grid config and delete existing if desired
 try:
-    with open(grid_conf_path) as f: grid_conf = json.load(f)
+    with open(args.path) as f: grid_conf = json.load(f)
     grid_conf["configs"] = [c for c in grid_conf["configs"] if "S!" != c["config_name"][:2]]
     print("\nGrid config loaded.")
 except: print("\nCouldn't load the grid config."); quit()
