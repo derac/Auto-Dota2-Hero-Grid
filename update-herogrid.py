@@ -26,7 +26,7 @@ print(grid_conf_path)
 # open grid config and delete existing if desired
 try:
     with open(grid_conf_path) as f: grid_conf = json.load(f)
-    grid_conf["configs"] = [c for c in grid_conf["configs"] if "S!" not in c["config_name"]]
+    grid_conf["configs"] = [c for c in grid_conf["configs"] if "S!" != c["config_name"][:2]]
     print("\nGrid config loaded.")
 except: print("\nCouldn't load the grid config."); quit()
 
