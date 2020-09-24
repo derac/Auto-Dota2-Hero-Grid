@@ -12,11 +12,15 @@ rank_cutoffs = [100,97,93,90,85,80]
 tiers = ["S","A","B","C","D"]
 
 # open grid config and delete existing if desired
-try:
-    with open(args.path) as f: grid_conf = json.load(f)
-    grid_conf["configs"] = [c for c in grid_conf["configs"] if "S!" != c["config_name"][:2]]
-    print("\nGrid config loaded.")
-except: print("\nCouldn't load the grid config."); quit()
+if os.path.isfile(args.path):
+    try:
+        with open(args.path) as f: grid_conf = json.load(f)
+        grid_conf["configs"] = [c for c in grid_conf["configs"] if "S!" != c["config_name"][:2]]
+        print("Grid config loaded.")
+    except: print("Couldn't load the grid config."); quit()
+else:
+    print("Creating new Grid Config file.")
+    grid_conf = {"version":3,"configs":[]}
 
 # update the grid config with each position's data from spectral.gg
 for pos_name,pos_endpoint in spec_positions.items():
