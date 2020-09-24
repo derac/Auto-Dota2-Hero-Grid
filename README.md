@@ -6,7 +6,7 @@ Run the program with the correct path to hero_grid_config.json (replace STEAM_IN
 
 ```> python3 update-hero-grid.py -path "STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json"```
 
-For example:
+For example in Windows:
 
 ```> python3 .\update-hero-grid.py -path "C:\Program Files (x86)\Steam\userdata\XXXXXXXXX\570\remote\cfg\hero_grid_config.json"```
 
