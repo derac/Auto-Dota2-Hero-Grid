@@ -3,7 +3,7 @@ usage: update-herogrid.py [-h] -path PATH
 
 optional arguments:
   -h, --help           show this help message and exit
-  -path PATH, -p PATH  Required. Path to hero_grid_config.json. STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json
+  -path PATH, -p PATH  Required. STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json
 ```
 
 The tier lists will be saved with a S! prefix. Anything with an S! prefix will get deleted when this is run to allow for quick updating.
