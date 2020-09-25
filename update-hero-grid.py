@@ -7,7 +7,7 @@ parser.print_help(); print(); args = parser.parse_args()
 date_str = datetime.date.today().strftime(" %d-%m-%Y")
 spec_url = 'https://stats.spectral.gg/lrg2/api/?pretty&league=imm_ranked_meta_last_7&mod=heroes-positions-position_'
 spec_positions = {"Core Safelane":"1.1","Core Midlane":"1.2","Core Offlane":"1.3","Support":"0.0"}
-rank_cutoffs = [100,97,93,90,85,80]; tiers = ["S","A","B","C","D"]
+rank_cutoffs = [100,95,90,85,80,75]; tiers = ["S","A","B","C","D"]
 
 # open grid config and delete existing if desired
 if os.path.isfile(args.path):
