@@ -2,13 +2,13 @@ Install requests with pip:
 
 ```> python3 -m pip install requests```
 
-Run the program with the correct path to hero_grid_config.json (replace STEAM_INSTALL and USER_ID with the correct values):
+If you're using Windows you should be able to just enter this and it will grab the steam install location from the registry and cycle through all users on the system.
 
-```> python3 update-hero-grid.py -path "STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json"```
+```> python3 update-hero-grid.py```
 
-For example in Windows:
+Otherwise, you can specify:
 
-```> python3 .\update-hero-grid.py -path "C:\Program Files (x86)\Steam\userdata\XXXXXXXXX\570\remote\cfg\hero_grid_config.json"```
+```>python3 update-hero-grid.py -steam_install_path '/bin/steam/whatever/' -user_id '123456789'```
 
 The tier lists will be saved with a S! prefix. Anything with an S! prefix will get deleted when this is run to allow for quick updating.
 
