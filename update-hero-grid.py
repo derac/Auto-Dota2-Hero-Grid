@@ -1,7 +1,8 @@
 import argparse, requests, json, os, datetime
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-path','-p',type=str,required=True,help="Required. STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json")
+parser.add_argument('-path','-p',type=str,required=True,
+                    help="Required. STEAM_INSTALL/userdata/USER_ID/570/remote/cfg/hero_grid_config.json")
 parser.add_argument('-verbose','-v',action="store_true",help="Show debug info.")
 parser.print_help(); print(); args = parser.parse_args()
 
