@@ -5,7 +5,7 @@ parser.add_argument('-steam_install_path','-p',type=str,
                     help="If you don't enter the Steam install path, the script will try to get it from the Windows registry.")
 parser.add_argument('-user_id','-u',type=str,
                     help="If you don't enter the user_id, the script will try to write to every user on the system.")
-parser.add_argument('-verbose','-v',action="store_true",help="show debug info")
+parser.add_argument('-verbose','-v',action="store_true",help="Show debug info.")
 args = parser.parse_args(); parser.print_help(); print();
 
 if not args.steam_install_path:
