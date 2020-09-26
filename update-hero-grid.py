@@ -10,15 +10,12 @@ spec_url = 'https://stats.spectral.gg/lrg2/api/?league=imm_ranked_meta_last_7&mo
 spec_pos = {"Core Safelane":"1.1","Core Midlane":"1.2","Core Offlane":"1.3","Support":"0.0"}
 
 if os.path.isfile(args.path): # open grid config and delete existing if desired
-    try:
-        with open(args.path) as f: grid_conf = json.load(f); print("Grid config loaded.")
-        grid_conf["configs"] = [c for c in grid_conf["configs"] if "S!" != c["config_name"][:2]]
-    except Exception as e: raise e
+    with open(args.path) as f: grid_conf = json.load(f); print("Grid config loaded.")
+    grid_conf["configs"] = [c for c in grid_conf["configs"] if "S!" != c["config_name"][:2]]
 else: grid_conf = {"version":3,"configs":[]}; print("Creating new Grid Config file.")
 
 for pos_name,pos_endpoint in spec_pos.items(): # update the grid config
-    try: hero_data = json.loads(requests.get(spec_url+pos_endpoint).content)["result"][pos_endpoint]
-    except Exception as e: raise e
+    hero_data = json.loads(requests.get(spec_url+pos_endpoint).content)["result"][pos_endpoint]
     hero_ranks = sorted([(data["rank"],hero_id) for hero_id,data in hero_data.items()], key=lambda x:-x[0])
     pos_conf = {"config_name": 'S! ' + pos_name + date_str,
                 "categories": [{"category_name":chr(65+i)+" tier - rank %s+"%(100-5*i-5),
@@ -28,7 +25,4 @@ for pos_name,pos_endpoint in spec_pos.items(): # update the grid config
     grid_conf["configs"].append(pos_conf); print("Processed",pos_name+'.');
     if args.verbose: print(pos_conf)
 
-try: # write grid conf
-    with open(args.path, "w") as f: print(json.dumps(grid_conf, indent=4), file=f)
-    print("Grid Config has been written.")
-except Exception as e: raise e
+with open(args.path, "w") as f: print(json.dumps(grid_conf, indent=4), file=f); print("Grid Config has been written.")
