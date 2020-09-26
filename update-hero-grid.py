@@ -28,9 +28,12 @@ for pos_name,pos_endpoint in spec_positions.items():
     hero_ranks.sort(key=lambda x:-x[0])
     pos_conf = {"config_name": 'S! ' + pos_name + date_str,
                 "categories": [{"category_name":tiers[i]+" tier - rank %s+"%rank_cutoffs[i+1],
-                                "x_position":0, "y_position":i*120,"width":1000,"height":100,
+                                "x_position":0, "y_position":i*120,"width":600,"height":100,
                                 "hero_ids":[id for rank,id in hero_ranks if rank_cutoffs[i] >= rank > rank_cutoffs[i+1]]}
                                for i in range(5)]}
+    pos_conf["categories"].append({"category_name":"E tier - rank 50+",
+                                   "x_position":600, "y_position":0,"width":600,"height":300,
+                                   "hero_ids":[id for rank,id in hero_ranks if rank_cutoffs[-1] >= rank > 50]})
     grid_conf["configs"].append(pos_conf)
     print("Processed",pos_name+'.')
 
