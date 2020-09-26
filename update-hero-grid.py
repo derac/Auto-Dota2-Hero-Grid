@@ -13,12 +13,12 @@ if os.path.isfile(args.path): # open grid config and delete existing if desired
     try:
         with open(args.path) as f: grid_conf = json.load(f); print("Grid config loaded.")
         grid_conf["configs"] = [c for c in grid_conf["configs"] if "S!" != c["config_name"][:2]]
-    except: print("Couldn't load the grid config."); quit();
+    except Exception as e: raise e
 else: grid_conf = {"version":3,"configs":[]}; print("Creating new Grid Config file.")
 
 for pos_name,pos_endpoint in spec_pos.items(): # update the grid config
     try: hero_data = json.loads(requests.get(spec_url+pos_endpoint).content)["result"][pos_endpoint]
-    except: print("\nFailed to load data from spectral.gg"); quit()
+    except Exception as e: raise e
     hero_ranks = sorted([(data["rank"],hero_id) for hero_id,data in hero_data.items()], key=lambda x:-x[0])
     pos_conf = {"config_name": 'S! ' + pos_name + date_str,
                 "categories": [{"category_name":chr(65+i)+" tier - rank %s+"%(100-5*i-5),
@@ -31,4 +31,4 @@ for pos_name,pos_endpoint in spec_pos.items(): # update the grid config
 try: # write grid conf
     with open(args.path, "w") as f: print(json.dumps(grid_conf, indent=4), file=f)
     print("Grid Config has been written.")
-except: print("Couldn't write the grid config.")
+except Exception as e: raise e
