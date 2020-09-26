@@ -12,7 +12,7 @@ spec_pos = {"Core Safelane":"1.1","Core Midlane":"1.2","Core Offlane":"1.3","Sup
 if os.path.isfile(args.path): # open grid config and delete existing if desired
     with open(args.path) as f: grid_conf = json.load(f); print("Grid config loaded.")
     grid_conf["configs"] = [c for c in grid_conf["configs"] if "S!" != c["config_name"][:2]]
-else: grid_conf = {"version":3,"configs":[]}; print("Creating new Grid Config file.")
+else: grid_conf = {"version":3,"configs":[]}; print("Creating new Grid Config file.");
 
 for pos_name,pos_endpoint in spec_pos.items(): # update the grid config
     hero_data = json.loads(requests.get(spec_url+pos_endpoint).content)["result"][pos_endpoint]
@@ -25,4 +25,4 @@ for pos_name,pos_endpoint in spec_pos.items(): # update the grid config
     grid_conf["configs"].append(pos_conf); print("Processed",pos_name+'.');
     if args.verbose: print(pos_conf)
 
-with open(args.path, "w") as f: print(json.dumps(grid_conf, indent=4), file=f); print("Grid Config has been written.")
+with open(args.path, "w") as f: print(json.dumps(grid_conf, indent=4), file=f); print("Grid Config has been written.");
