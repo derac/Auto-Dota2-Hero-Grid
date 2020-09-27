@@ -19,7 +19,7 @@ spec_pos = {"Core Safelane":"1.1","Core Midlane":"1.2","Core Offlane":"1.3","Sup
 
 pos_confs = [] # Create tier configs from spectral.gg
 all_roles = {"config_name":"S! All Roles " + date_str, "categories": []}
-for p,(pos_name,pos_endpoint) in enumerate(spec_pos.items()): 
+for pos_num,(pos_name,pos_endpoint) in enumerate(spec_pos.items()):
     hero_data = json.loads(requests.get(spec_url+pos_endpoint).content)["result"][pos_endpoint]
     hero_ranks = sorted([(data["rank"],hero_id) for hero_id,data in hero_data.items()], key=lambda x:-x[0])
     pos_conf = {"config_name": "S! " + pos_name + date_str,
@@ -28,7 +28,7 @@ for p,(pos_name,pos_endpoint) in enumerate(spec_pos.items()):
                                 "hero_ids":[id for rank,id in hero_ranks if (100-5*i) >= rank > (100-5*i-5)]}
                                for i in range(15)]}
     pos_confs.append(pos_conf); print("Processed",pos_name+".");
-    all_roles["categories"].append({"category_name":pos_name, "x_position":0, "y_position":p*120,
+    all_roles["categories"].append({"category_name":pos_name, "x_position":0, "y_position":pos_num*120,
                                     "width":1200, "height":100, "hero_ids":[id for rank,id in hero_ranks[:20]]})
     if args.verbose: print(pos_conf)
 
