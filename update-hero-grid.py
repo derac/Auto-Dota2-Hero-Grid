@@ -24,12 +24,12 @@ for p,(pos_name,pos_endpoint) in enumerate(spec_pos.items()):
     hero_ranks = sorted([(data["rank"],hero_id) for hero_id,data in hero_data.items()], key=lambda x:-x[0])
     pos_conf = {"config_name": "S! " + pos_name + date_str,
                 "categories": [{"category_name":chr(65+i)+" tier - rank %s+"%(100-5*i-5),
-                                "x_position":i//5*400, "y_position":(i%5)*120,"width":400,"height":100,
+                                "x_position":i//5*400, "y_position":(i%5)*120, "width":400, "height":100,
                                 "hero_ids":[id for rank,id in hero_ranks if (100-5*i) >= rank > (100-5*i-5)]}
                                for i in range(15)]}
     pos_confs.append(pos_conf); print("Processed",pos_name+".");
-    all_roles["categories"].append({"category_name":pos_name, "x_position":0, "y_position":p*120,"width":1200,"height":100,
-                                    "hero_ids":[id for rank,id in hero_ranks[:20]]})
+    all_roles["categories"].append({"category_name":pos_name, "x_position":0, "y_position":p*120,
+                                    "width":1200, "height":100, "hero_ids":[id for rank,id in hero_ranks[:20]]})
     if args.verbose: print(pos_conf)
 
 for user_id in (os.listdir(os.path.join(steam_path,"userdata")) if not args.user_id else [args.user_id]):
