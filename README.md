@@ -1,5 +1,5 @@
 # Windows guide
-1. Install [Python](https://www.microsoft.com/en-us/p/python-38/9mssztt1n39l) and download [this package](https://github.com/derac/video-matrix/archive/master.zip).
+1. Install [Python](https://www.microsoft.com/en-us/p/python-38/9mssztt1n39l) and download [this package](https://github.com/derac/auto-hero-grid/archive/master.zip).
 1. `Unzip` and `open` the folder in file explorer.
 1. `Shift+right click` empty space in the folder and click `Open PowerShell window here`.
 1. Type `pip install requests` and press `Enter`
