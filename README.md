@@ -4,7 +4,6 @@
 1. `Shift+right click` empty space in the folder and click `Open PowerShell window here`.
 1. Type `pip install requests` and press `Enter`
 1. Type `python update-hero-grid.py` and press `Enter`
-1. Open http://127.0.0.1:8080
 
 # Linux usage
 1. `pip install requests`
