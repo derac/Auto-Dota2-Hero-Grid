@@ -29,18 +29,8 @@ hero_total_matches = sorted([(int(hero_id, base=10),int(data["matches_s"] / 20))
 for pos_name,pos_endpoint in spec_pos.items(): # update the grid config
     try: hero_data = json.loads(requests.get(spec_url+pos_endpoint).content)["result"][pos_endpoint]
     except: print("\nFailed to load data from spectral.gg"); quit()
-    hero_ranks = sorted([(data["rank"],int(hero_id)) for hero_id,data in hero_data.items()], key=lambda x:-x[0])
     hero_matches = sorted([(int(hero_id, base=10),data["matches_s"]) for hero_id,data in hero_data.items()], key=lambda x:-x[0])
-    heroes_to_delete = []
-    for i in hero_ranks:
-        rank = hero_ranks[hero_ranks.index(i)][0]
-        hero_id = hero_ranks[hero_ranks.index(i)][1]
-        total_matches = hero_total_matches[find_in_list_of_list(hero_total_matches,hero_id)][1]
-        lane_matches = hero_matches[find_in_list_of_list(hero_matches,hero_id)][1]
-        if lane_matches < total_matches:
-            heroes_to_delete.append(i)
-    for j in heroes_to_delete:
-        hero_ranks.remove(j)
+    hero_ranks = sorted([(data["rank"],int(hero_id)) for hero_id,data in hero_data.items() if data["matches_s"] > hero_total_matches[find_in_list_of_list(hero_total_matches,int(hero_id))][1]], key=lambda x:-x[0])
     pos_conf = {"config_name": 'S! ' + pos_name + date_str,
                 "categories": [{"category_name":chr(65+i)+" tier - rank %s+"%(100-5*i-5),
                                 "x_position":i//5*400, "y_position":(i%5)*120,"width":400,"height":100,
