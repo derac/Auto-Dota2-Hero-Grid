@@ -1,4 +1,9 @@
-import argparse, requests, json, os, datetime
+import os
+import json
+import datetime
+import argparse
+
+import requests
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
