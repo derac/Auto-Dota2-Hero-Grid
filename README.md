@@ -10,7 +10,7 @@
 
 1. `pip install requests`
 
-1. `python auto-hero-grid.py -steam_install_path /THE/PATH/TO/STEAM --user_id YOUR_STEAM_USER_ID`
+1. `python generate-grid.py -steam_install_path /THE/PATH/TO/STEAM --user_id YOUR_STEAM_USER_ID`
 
 The tier lists will be saved with a S! prefix. Anything with an S! prefix will get deleted when this is run to allow for quick updating.
 
