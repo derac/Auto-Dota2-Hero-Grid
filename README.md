@@ -4,7 +4,7 @@
 1. `Unzip` and `open` the folder in file explorer.
 1. `Shift+right click` empty space in the folder and click `Open PowerShell window here`.
 1. Type `pip install requests` and press `Enter`
-1. Type `python auto-hero-grid.py` and press `Enter`
+1. Type `python generate-grid.py` and press `Enter`
 
 # Linux usage
 
