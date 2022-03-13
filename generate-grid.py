@@ -32,12 +32,19 @@ print()
 
 if not args.steam_install_path:
     print("Attempting to get Steam install path from registry.")
-    import winreg
+    try:
+        import winreg
 
-    steam_path = winreg.QueryValueEx(
-        winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\WOW6432Node\Valve\Steam"),
-        "InstallPath",
-    )[0]
+        steam_path = winreg.QueryValueEx(
+            winreg.OpenKey(
+                winreg.HKEY_LOCAL_MACHINE, "SOFTWARE\WOW6432Node\Valve\Steam"
+            ),
+            "InstallPath",
+        )[0]
+    except:
+        print(
+            "Cannot get steam install path from the registry, make sure you define steam_install_path in the command line arguments."
+        )
 else:
     steam_path = args.steam_install_path
 
